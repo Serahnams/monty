@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 
 #define INSTRUCTIONS              \
@@ -14,15 +15,7 @@
 		    {"pop", pop},     \
 		    {"swap", swap},   \
 		    {"nop", nop},     \
-		    {"div", _div},    \
-		    {"mul", _mul},    \
 		    {"add", _add},    \
-		    {"sub", _sub},    \
-		    {"mod", mod},     \
-		    {"pchar", pchar}, \
-		    {"pstr", pstr},   \
-		    {"rotl", rotl},   \
-		    {"rotr", rotr},   \
 		{                     \
 			NULL, NULL      \
 		}                     \
@@ -79,8 +72,14 @@ void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void push(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_cnt);
+void opcode(stack_t **stack, char *str, unsigned int line_number);
 
 int is_digit(char *string);
 int isnumber(char *str);
+
+stack_t *add_node(stack_t **stack, const int n);
+stack_t *queue_node(stack_t **stack, const int n);
+void free_stack(stack_t *stack);
+size_t print_stack(const stack_t *stack);
 
 #endif
